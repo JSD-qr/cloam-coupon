@@ -1,0 +1,4 @@
+# Project exclude paths
+/cloam-coupon-service/coupon-common/target/
+/cloam-coupon-service/coupon-user/target/
+/coupon-eureka/target/
