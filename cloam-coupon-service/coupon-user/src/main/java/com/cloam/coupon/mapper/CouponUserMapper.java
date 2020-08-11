@@ -20,4 +20,12 @@ public interface CouponUserMapper extends JpaRepository<CouponUser, Integer> {
      */
     CouponUser findByUserName(String userName);
 
+    /**
+     * 根据用户名与状态查询用户信息
+     * @param userName
+     * @param status
+     * @return
+     */
+    CouponUser findByUserNameAndStatus(String userName, String status);
+
 }

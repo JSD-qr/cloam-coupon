@@ -11,7 +11,7 @@ import javax.persistence.EntityListeners;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * <h1>用户实体表<h1>
@@ -73,17 +73,17 @@ public class CouponUser implements Serializable {
      * 是否可用
      */
     @Column(name = "status", nullable = false)
-    private boolean status;
+    private String status;
 
     /**
      * 创建时间
      */
     @Column(name = "createTime", nullable = false)
-    private Date create_time;
+    private Timestamp create_time;
 
     /**
      * 修改时间
      */
     @Column(name = "updateTime", nullable = false)
-    private Date update_time;
+    private Timestamp update_time;
 }

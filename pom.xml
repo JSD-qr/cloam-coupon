@@ -12,6 +12,7 @@
     <modules>
         <module>cloam-coupon-service</module>
         <module>coupon-eureka</module>
+        <module>coupon-gateway</module>
     </modules>
 
     <name>cloam-coupon</name>

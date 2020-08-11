@@ -11,6 +11,7 @@ import org.springframework.util.DigestUtils;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.util.Random;
+import java.util.UUID;
 
 /**
  * <h1>用户服务工具类<h1>
@@ -59,11 +60,11 @@ public class CouponUtils {
      * @return 验证码
      */
     public String getCode() {
-        String str="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        Random random=new Random();
-        StringBuffer sb=new StringBuffer();
-        for(int i=0;i<6;i++){
-            int number=random.nextInt(62);
+        String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        Random random = new Random();
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < 6; i++) {
+            int number = random.nextInt(62);
             sb.append(str.charAt(number));
         }
         return sb.toString();
@@ -82,7 +83,7 @@ public class CouponUtils {
         try {
             helper = new MimeMessageHelper(mimeMessage, true);
             helper.setSubject(subject);
-            helper.setText(text);
+            helper.setText(text, true);
             helper.setTo(obj);
             helper.setFrom(from);
         } catch (MessagingException e) {
@@ -90,5 +91,14 @@ public class CouponUtils {
             throw new CouponException(e.getMessage());
         }
         mailSender.send(mimeMessage);
+    }
+
+    /**
+     * 获取盐
+     *
+     * @return 盐
+     */
+    public String salt() {
+        return UUID.randomUUID().toString().replaceAll("-", "");
     }
 }

@@ -1,0 +1,44 @@
+server:
+  port: 9999
+
+spring:
+  application:
+    name: coupon-gateway
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka/
+
+zuul:
+  # 定义前缀
+  prefix: /cloam
+  routes:
+    # 优惠券模板微服务路由配置定义
+    users:
+      path: /coupon-user/**
+      serviceId: eureka-client-coupon-user
+      # 是否跳过前缀
+      strip-prefix: false
+    # 优惠券分发微服务路由配置定义
+  #    distribution:
+  #      path: /coupon-distribution/**
+  #      serviceId: eureka-client-coupon-distribution
+  #      # 是否跳过前缀
+  #      strip-prefix: false
+  #    # 优惠券结算微服务路由配置定义
+  #    settlement:
+  #      path: /coupon-settlement/**
+  #      serviceId: eureka-client-coupon-settlement
+  #      # 是否跳过前缀
+  #      strip-prefix: false
+  host:
+    connect-timeout-millis: 15000
+    socket-timeout-millis: 60000
+
+# 负载均衡
+ribbon:
+  # 链接超时
+  ConnectTimeout: 15000
+  # 响应超时
+  ReadTimeout: 15000

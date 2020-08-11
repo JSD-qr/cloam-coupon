@@ -4,7 +4,10 @@ package com.cloam.coupon.advice;
 import com.cloam.coupon.exception.CouponException;
 import com.cloam.coupon.vo.CommonResponse;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
  * @author: Yaien
  * @create: 2020-07-31 09:28
  */
+@Slf4j
+@ControllerAdvice
 @AllArgsConstructor
 public class GlobalExceptionAdvice {
 
@@ -26,6 +31,7 @@ public class GlobalExceptionAdvice {
      * @return 处理过的异常对象
      */
     @ExceptionHandler(value = CouponException.class)
+    @ResponseBody
     public CommonResponse<String> handlerCouponException(HttpServletRequest request, CouponException ex) {
         CommonResponse<String> response = new CommonResponse<>(-1, "business error");
         response.setData(ex.getMessage());
